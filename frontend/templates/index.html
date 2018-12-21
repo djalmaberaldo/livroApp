@@ -15,10 +15,10 @@
     <!-- Content -->
     <div id="table-area" class="table-area">
         <div style="display: flex;">
-            <div style="float:left"><span>Livros a venda</span></div>
-            <div style="float:right"><input type="button" onclick="loadAddFormTemplate()" value="Adicionar"></div>
+            <div style="float:right"><input type="button" onclick="loadAddFormTemplate()" value="Adicionar Livro"></div>
         </div>
         <table>
+            <caption><h3>Livros a venda</h3></caption>
             <thead>
                 <tr>
                     <th>Titulo</th>
@@ -45,7 +45,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <input type="button" value="Editar">
+                        <input type="button" value="Editar" onclick="loadAddFormTemplate()">
                         <input type="button" value="Excluir">
                     </td>
                 </tr>
