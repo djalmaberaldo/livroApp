@@ -31,7 +31,8 @@ function fillTable(livros){
         +"<td>"+livros[key].preco+"</td>"
         +"<td>"+livros[key].edicao+"</td>"
         +"<td>"+livros[key].editora+"</td>"
-        +"<td><input type='button' value='Editar' onclick='editarLivro("+livros[key].id+")'></td>"
+        +"<td><input type='button' value='Editar' onclick='editarLivro("+livros[key].id+")'>"
+        +"<input type='button' value='Excluir' onclick='excluirLivro("+livros[key].id+")'></td>"
         +"</tr>"
         rows = rows + contentRow;
     }
@@ -51,7 +52,7 @@ function insertData(){
     "preco": document.getElementById("preco").value,
     "edicao": document.getElementById("edicao").value,
     "editora": document.getElementById("editora").value,
-    "id": null};
+    "id": document.getElementById("id").value};
 
     var headers = new Headers();
     headers.append("Content-type","application/json")
@@ -115,6 +116,19 @@ function updateData(){
         .then(function(result){ 
             document.getElementById("table-area").style.display='block';
             document.getElementById("form-add").style.display='none';
+            loadAllData();
+        }) 
+    })
+    .catch(function(err) { console.error(err); });
+}
+
+function excluirLivro(id){
+    fetch(url+'/'+id+'/',{
+        method: 'DELETE'
+    })
+    .then(function(response) { 
+        response.text()
+        .then(function(result){ 
             loadAllData();
         }) 
     })
