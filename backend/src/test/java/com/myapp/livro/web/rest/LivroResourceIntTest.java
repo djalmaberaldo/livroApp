@@ -44,6 +44,9 @@ public class LivroResourceIntTest {
     private static final String DEFAULT_ISBN = "AAAAAAAAAA";
     private static final String UPDATED_ISBN = "BBBBBBBBBB";
 
+    private static final String DEFAULT_TITULO = "AAAAAAAAAA";
+    private static final String UPDATED_TITULO = "BBBBBBBBBB";
+
     private static final String DEFAULT_AUTOR = "AAAAAAAAAA";
     private static final String UPDATED_AUTOR = "BBBBBBBBBB";
 
@@ -102,6 +105,7 @@ public class LivroResourceIntTest {
     public static Livro createEntity(EntityManager em) {
         Livro livro = new Livro()
             .isbn(DEFAULT_ISBN)
+            .titulo(DEFAULT_TITULO)
             .autor(DEFAULT_AUTOR)
             .editora(DEFAULT_EDITORA)
             .edicao(DEFAULT_EDICAO)
@@ -130,6 +134,7 @@ public class LivroResourceIntTest {
         assertThat(livroList).hasSize(databaseSizeBeforeCreate + 1);
         Livro testLivro = livroList.get(livroList.size() - 1);
         assertThat(testLivro.getIsbn()).isEqualTo(DEFAULT_ISBN);
+        assertThat(testLivro.getTitulo()).isEqualTo(DEFAULT_TITULO);
         assertThat(testLivro.getAutor()).isEqualTo(DEFAULT_AUTOR);
         assertThat(testLivro.getEditora()).isEqualTo(DEFAULT_EDITORA);
         assertThat(testLivro.getEdicao()).isEqualTo(DEFAULT_EDICAO);
@@ -167,6 +172,7 @@ public class LivroResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(livro.getId().intValue())))
             .andExpect(jsonPath("$.[*].isbn").value(hasItem(DEFAULT_ISBN.toString())))
+            .andExpect(jsonPath("$.[*].titulo").value(hasItem(DEFAULT_TITULO.toString())))
             .andExpect(jsonPath("$.[*].autor").value(hasItem(DEFAULT_AUTOR.toString())))
             .andExpect(jsonPath("$.[*].editora").value(hasItem(DEFAULT_EDITORA.toString())))
             .andExpect(jsonPath("$.[*].edicao").value(hasItem(DEFAULT_EDICAO)))
@@ -185,6 +191,7 @@ public class LivroResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(livro.getId().intValue()))
             .andExpect(jsonPath("$.isbn").value(DEFAULT_ISBN.toString()))
+            .andExpect(jsonPath("$.titulo").value(DEFAULT_TITULO.toString()))
             .andExpect(jsonPath("$.autor").value(DEFAULT_AUTOR.toString()))
             .andExpect(jsonPath("$.editora").value(DEFAULT_EDITORA.toString()))
             .andExpect(jsonPath("$.edicao").value(DEFAULT_EDICAO))
@@ -213,6 +220,7 @@ public class LivroResourceIntTest {
         em.detach(updatedLivro);
         updatedLivro
             .isbn(UPDATED_ISBN)
+            .titulo(UPDATED_TITULO)
             .autor(UPDATED_AUTOR)
             .editora(UPDATED_EDITORA)
             .edicao(UPDATED_EDICAO)
@@ -228,6 +236,7 @@ public class LivroResourceIntTest {
         assertThat(livroList).hasSize(databaseSizeBeforeUpdate);
         Livro testLivro = livroList.get(livroList.size() - 1);
         assertThat(testLivro.getIsbn()).isEqualTo(UPDATED_ISBN);
+        assertThat(testLivro.getTitulo()).isEqualTo(UPDATED_TITULO);
         assertThat(testLivro.getAutor()).isEqualTo(UPDATED_AUTOR);
         assertThat(testLivro.getEditora()).isEqualTo(UPDATED_EDITORA);
         assertThat(testLivro.getEdicao()).isEqualTo(UPDATED_EDICAO);

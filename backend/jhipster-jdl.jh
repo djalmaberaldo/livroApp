@@ -2,6 +2,7 @@
 entity Livro {
 	id Integer,
     isbn String,
+    titulo String,
     autor String,
     editora String,
     edicao Integer,

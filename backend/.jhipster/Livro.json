@@ -6,6 +6,10 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "titulo",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "autor",
             "fieldType": "String"
         },

@@ -22,6 +22,9 @@ public class Livro implements Serializable {
     @Column(name = "isbn")
     private String isbn;
 
+    @Column(name = "titulo")
+    private String titulo;
+
     @Column(name = "autor")
     private String autor;
 
@@ -54,6 +57,19 @@ public class Livro implements Serializable {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public Livro titulo(String titulo) {
+        this.titulo = titulo;
+        return this;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getAutor() {
@@ -134,6 +150,7 @@ public class Livro implements Serializable {
         return "Livro{" +
             "id=" + getId() +
             ", isbn='" + getIsbn() + "'" +
+            ", titulo='" + getTitulo() + "'" +
             ", autor='" + getAutor() + "'" +
             ", editora='" + getEditora() + "'" +
             ", edicao=" + getEdicao() +
