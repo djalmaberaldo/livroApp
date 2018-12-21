@@ -30,60 +30,47 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        Djalma
-                    </td>
-                    <td>
-                        sjdjsad
-                    </td>
-                    <td>
-                        3
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <input type="button" value="Editar" onclick="loadAddFormTemplate()">
-                        <input type="button" value="Excluir">
-                    </td>
-                </tr>
+            <tbody id="content-row">
+            
             </tbody>
         </table>
     </div>
 
-    <form id="form-add" class="form-add" width="100%;" onSubmit="">
+    <form name="form-add" id="form-add" class="form-add" width="100%;" >
         <fieldset>
             <legend><h4>Cadastrar/Editar Livro:</h4></legend>
     
         <div>
             <label for="autor">Autor</label>
-            <input type="text" name="autor" id="autor">
-        
+            <input required type="text" name="autor" id="autor">
         </div>
         
         <div>
             <label for="titulo">Titulo</label>
-            <input type="text" name="titulo" id="titulo">
+            <input required type="text" name="titulo" id="titulo">
         </div>
     
         <div>
             <label for="isbn">ISBN</label>
-            <input type="text" name="isbn" id="isbn">    
+            <input required  type="text" name="isbn" id="isbn">    
         </div>
     
         <div>
             <label for="preco">Preço</label>
-            <input type="text" name="preco" id="preco">
+            <input required type="text" name="preco" id="preco">
         </div>
     
         <div>
             <label for="edicao">Edição</label>
-            <input type="text" name="edicao" id="edicao">
+            <input required type="text" name="edicao" id="edicao">
+        </div>
+
+        <div>
+            <label for="editora">Editora</label>
+            <input required type="text" name="editora" id="editora">
         </div>
     
-        <input type="submit" value="Adicionar">
+        <input type="button" onclick="insertData()" value="Adicionar">
         <input type="button" value="Cancelar" onclick="cancelarAdicionar();">
 
         </fieldset>

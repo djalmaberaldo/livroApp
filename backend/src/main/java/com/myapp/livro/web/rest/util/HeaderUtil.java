@@ -20,7 +20,6 @@ public final class HeaderUtil {
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-" + APPLICATION_NAME + "-alert", message);
         headers.add("X-" + APPLICATION_NAME + "-params", param);
-        headers.add("Access-Control-Allow-Origin", "*");
         headers.add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         headers.add("Access-Control-Max-Age", "86400"); // 24 Hours
         headers.add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-auth-token");
