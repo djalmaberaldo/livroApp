@@ -31,7 +31,8 @@ function fillTable(livros){
         +"<td>"+livros[key].preco+"</td>"
         +"<td>"+livros[key].edicao+"</td>"
         +"<td>"+livros[key].editora+"</td>"
-        +"<td></td></tr>"
+        +"<td><input type='button' value='Editar' onclick='editarLivro("+livros[key].id+")'></td>"
+        +"</tr>"
         rows = rows + contentRow;
     }
 
@@ -57,6 +58,55 @@ function insertData(){
 
     fetch(url,{
         method: 'POST',
+        body: JSON.stringify(formData),
+        headers: headers
+    })
+    .then(function(response) { 
+        response.text()
+        .then(function(result){ 
+            document.getElementById("table-area").style.display='block';
+            document.getElementById("form-add").style.display='none';
+            loadAllData();
+        }) 
+    })
+    .catch(function(err) { console.error(err); });
+}
+
+function editarLivro(id){
+
+    loadAddFormTemplate();
+    
+    fetch(url+'/'+id+'/',{
+        method: 'GET'
+    })
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(response) { 
+        console.log(response);
+        for(key in response){
+            if(key != 'id'){
+                document.getElementById(key).value = response[key];
+            }
+        }
+    })
+    .catch(function(err) { console.error(err); });
+}
+
+function updateData(){
+    var formData = {"titulo": document.getElementById("titulo").value,
+    "autor": document.getElementById("autor").value,
+    "isbn": document.getElementById("isbn").value,
+    "preco": document.getElementById("preco").value,
+    "edicao": document.getElementById("edicao").value,
+    "editora": document.getElementById("editora").value,
+    "id": null};
+
+    var headers = new Headers();
+    headers.append("Content-type","application/json")
+
+    fetch(url,{
+        method: 'PUT',
         body: JSON.stringify(formData),
         headers: headers
     })
