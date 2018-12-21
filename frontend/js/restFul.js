@@ -14,6 +14,17 @@ function loadAllData(){
     .catch(function(err) { console.error(err); });
 }
 
+function loadAddFormTemplate(){
+    document.getElementById("form-add").style.display='block';
+    document.getElementById("table-area").style.display='none';
+
+}
+
+function cancelarAdicionar(){
+    document.getElementById("form-add").style.display='none';
+    document.getElementById("table-area").style.display='block';
+}
+
 function insertData(){
     const url='http://localhost:8080/api/livros';
     const myHeaders = new Headers();
