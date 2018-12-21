@@ -1,0 +1,13 @@
+version: '2'
+services:
+    livro-app:
+        image: livro
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://livro-mysql:3306/livro?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+    livro-mysql:
+        extends:
+            file: mysql.yml
+            service: livro-mysql

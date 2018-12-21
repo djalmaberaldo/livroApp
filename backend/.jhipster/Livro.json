@@ -1,0 +1,36 @@
+{
+    "name": "Livro",
+    "fields": [
+        {
+            "fieldName": "isbn",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "autor",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "editora",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "edicao",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "preco",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181221190521",
+    "entityTableName": "livro",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "livro",
+    "applications": "*",
+    "microserviceName": "livro"
+}

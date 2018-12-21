@@ -1,0 +1,32 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.myapp.livro"
+    },
+    "jhipsterVersion": "5.7.2",
+    "applicationType": "microservice",
+    "baseName": "livro",
+    "packageName": "com.myapp.livro",
+    "packageFolder": "com/myapp/livro",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MDZlN2YxZGQ1NDc2OTI2ZDM5Y2Q4Mjg2YzdiZTNiNzAzOWRkODAwYmM3NmQ1NGI0NjU0YjlhMWQ5ZTQwODY5ZTRlMDA4Y2U0OWRkZGQ2NDk5YmU0NjU1ZjQyNTQ0NTk3MmEwNWE4OTczODQ0Y2M4NzlkOTAwNjAwMzg3NTExNmE=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
