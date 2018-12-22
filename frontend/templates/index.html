@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <head>
+    <title>Livraria</title>
     <link rel="stylesheet" type="text/css" href="../style/style.css">
     <link rel="stylesheet" type="text/css" href="../style/formStyle.css">
 
     <script src="../js/restFul.js"></script>
 
 </head>
-<body onload="loadAllData()">
+<body onload="carregarDados()">
     <!-- Top bar-->
     <div class="top-bar" >
         <span >LIVRARIA</span>
@@ -14,11 +15,11 @@
 
     <!-- Content -->
     <div id="table-area" class="table-area">
-        <div style="display: flex;">
-            <div style="float:right"><input type="button" onclick="loadAddFormTemplate()" value="Adicionar Livro"></div>
-        </div>
+
         <table>
-            <caption><h3>Livros a venda</h3></caption>
+            <caption>
+                <h3>Livros para vender</h3>
+            </caption>
             <thead>
                 <tr>
                     <th>Titulo</th>
@@ -34,47 +35,49 @@
             
             </tbody>
         </table>
+
+        <div class="f-right">
+            <input type="button" onclick="carregarFormularioCadastroEdicao()" value="Adicionar Livro">
+        </div>
     </div>
+
+    
 
     <form name="form-add" id="form-add" class="form-add" width="100%;" >
         <fieldset>
             <legend><h4>Cadastrar/Editar Livro:</h4></legend>
-
-        <div>
-            <input  type="hidden" name="id" id="id">
-        </div>
     
         <div>
-            <label for="autor">Autor</label>
+            <label for="autor">Autor:</label>
             <input required type="text" name="autor" id="autor">
         </div>
         
         <div>
-            <label for="titulo">Titulo</label>
+            <label for="titulo">Título:</label>
             <input required type="text" name="titulo" id="titulo">
         </div>
     
         <div>
-            <label for="isbn">ISBN</label>
+            <label for="isbn">ISBN:</label>
             <input required  type="text" name="isbn" id="isbn">    
         </div>
     
         <div>
-            <label for="preco">Preço</label>
+            <label for="preco">Preço:</label>
             <input required type="text" name="preco" id="preco">
         </div>
     
         <div>
-            <label for="edicao">Edição</label>
+            <label for="edicao">Edição:</label>
             <input required type="text" name="edicao" id="edicao">
         </div>
 
         <div>
-            <label for="editora">Editora</label>
+            <label for="editora">Editora:</label>
             <input required type="text" name="editora" id="editora">
         </div>
     
-        <input type="button" onclick="insertData()" value="Adicionar">
+        <input type="button" onclick="cadastrarOuEditarLivro()" value="Adicionar/Editar">
         <input type="button" value="Cancelar" onclick="cancelarAdicionar();">
 
         </fieldset>

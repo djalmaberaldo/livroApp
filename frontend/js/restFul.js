@@ -1,8 +1,8 @@
 
 const url='http://localhost:8081/livro/api/livros';
+var objId = null;
 
-
-function loadAllData(){
+function carregarDados(){
 
     fetch(url,{
         method: 'GET'
@@ -11,26 +11,25 @@ function loadAllData(){
         return response.json();
     })
     .then(function(response) { 
-        fillTable(response);
+        preencherTabela(response);
     })
     .catch(function(err) { console.error(err); });
 }
 
-function loadAddFormTemplate(){
+function carregarFormularioCadastroEdicao(){
     document.getElementById("form-add").style.display='block';
     document.getElementById("table-area").style.display='none';
-
 }
 
-function fillTable(livros){
+function preencherTabela(livros){
     var rows = "";
     for (var key in livros){
-        var contentRow = "<tr><td>"+livros[key].autor+"</td>"
-        + "<td>"+livros[key].titulo+"</td>"
+        var contentRow = "<tr><td>"+livros[key].titulo+"</td>"
+        + "<td>"+livros[key].autor+"</td>"
         +"<td>"+livros[key].isbn+"</td>"
-        +"<td>"+livros[key].preco+"</td>"
-        +"<td>"+livros[key].edicao+"</td>"
         +"<td>"+livros[key].editora+"</td>"
+        +"<td>"+livros[key].edicao+"</td>"
+        +"<td>R$ "+livros[key].preco+",00</td>"
         +"<td><input type='button' value='Editar' onclick='editarLivro("+livros[key].id+")'>"
         +"<input type='button' value='Excluir' onclick='excluirLivro("+livros[key].id+")'></td>"
         +"</tr>"
@@ -45,20 +44,25 @@ function cancelarAdicionar(){
     document.getElementById("table-area").style.display='block';
 }
 
-function insertData(){
+
+function cadastrarOuEditarLivro(){
+
+    //Pega os valores do formulário
     var formData = {"titulo": document.getElementById("titulo").value,
     "autor": document.getElementById("autor").value,
     "isbn": document.getElementById("isbn").value,
     "preco": document.getElementById("preco").value,
     "edicao": document.getElementById("edicao").value,
     "editora": document.getElementById("editora").value,
-    "id": document.getElementById("id").value};
+    "id": objId};
 
     var headers = new Headers();
     headers.append("Content-type","application/json")
 
+    console.log(objId);
+
     fetch(url,{
-        method: 'POST',
+        method: (formData.id === null ? 'POST':'PUT'),
         body: JSON.stringify(formData),
         headers: headers
     })
@@ -67,7 +71,8 @@ function insertData(){
         .then(function(result){ 
             document.getElementById("table-area").style.display='block';
             document.getElementById("form-add").style.display='none';
-            loadAllData();
+            limparTabela();
+            carregarDados();
         }) 
     })
     .catch(function(err) { console.error(err); });
@@ -75,8 +80,10 @@ function insertData(){
 
 function editarLivro(id){
 
-    loadAddFormTemplate();
+    //Carrega formulário para edição
+    carregarFormularioCadastroEdicao();
     
+    //Busca dados do livro
     fetch(url+'/'+id+'/',{
         method: 'GET'
     })
@@ -84,40 +91,15 @@ function editarLivro(id){
         return response.json();
     })
     .then(function(response) { 
-        console.log(response);
         for(key in response){
-            if(key != 'id'){
+            if(key === 'id'){
+                objId = response[key];
+            }else{
+                 //Atribui valores ao campos
+                 console.log(key);
                 document.getElementById(key).value = response[key];
             }
         }
-    })
-    .catch(function(err) { console.error(err); });
-}
-
-function updateData(){
-    var formData = {"titulo": document.getElementById("titulo").value,
-    "autor": document.getElementById("autor").value,
-    "isbn": document.getElementById("isbn").value,
-    "preco": document.getElementById("preco").value,
-    "edicao": document.getElementById("edicao").value,
-    "editora": document.getElementById("editora").value,
-    "id": null};
-
-    var headers = new Headers();
-    headers.append("Content-type","application/json")
-
-    fetch(url,{
-        method: 'PUT',
-        body: JSON.stringify(formData),
-        headers: headers
-    })
-    .then(function(response) { 
-        response.text()
-        .then(function(result){ 
-            document.getElementById("table-area").style.display='block';
-            document.getElementById("form-add").style.display='none';
-            loadAllData();
-        }) 
     })
     .catch(function(err) { console.error(err); });
 }
@@ -129,9 +111,18 @@ function excluirLivro(id){
     .then(function(response) { 
         response.text()
         .then(function(result){ 
-            loadAllData();
+            carregarDados();
         }) 
     })
     .catch(function(err) { console.error(err); });
 }
 
+function limparTabela(){
+    document.getElementById("titulo").value = '';
+    document.getElementById("autor").value ='';
+    document.getElementById("isbn").value = '';
+    document.getElementById("preco").value = '';
+    document.getElementById("edicao").value ='';
+    document.getElementById("editora").value = '';
+    objId = null;
+}

@@ -27,7 +27,7 @@ public class LivroResource {
 
     private final Logger log = LoggerFactory.getLogger(LivroResource.class);
 
-    private static final String ENTITY_NAME = "livroLivro";
+    private static final String ENTITY_NAME = "livro";
 
     private final LivroService livroService;
 
